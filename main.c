@@ -1,30 +1,14 @@
-/*
-
-Dynamic Memory Allocation
-1. ABC private ltd. manages emloyee records of other companies.
-2. Employee Id can be of any length and it can contain any character
-3. For 3 employees, you have to take 'length of employee id' as input in a length integer variable.
-4. Then, you have to take employee id as an input and display it on screen.
-5. Store the employee id in a character array which is allocated dynamically.
-6. You have to create only one character array dynamically.
-
-employee1:
-Enter no of characters on you Id
-30
-dynamically allocate the character array.
-take input from user
-
-*/
-
 #include <stdio.h>
-#include <string.h>
-#include <stdlib.h>
+#include <string.h>   // for strcpy()
+#include <stdlib.h>   // for malloc()
 
 int main()
 {
-    printf("Welcome to ABC pvt. ltd. Company\n");
+    printf("\n\t********* Welcome to ABC pvt. ltd. Company *********\n");
+    // Dynamically allocating memory for a character array of strings
     char **arr = (char**)malloc(3*sizeof(char *));    
 
+    // Implementing a loop for taking input of the length of eIDs and all the three employees eIDs
     for (int i = 0; i < 3; i++)
     {
         char id[100];
@@ -32,13 +16,16 @@ int main()
         printf("Enter the no of character in your eID-%d: \n", i+1);
         scanf("%d", &n);
         getchar();    // it consume the enter event(valid input for next scanf function) after entering the value of n
+
+        // Dynamically allocating memory for eIDs stored in the array
         arr[i] = (char *)malloc(n * sizeof(char));
+
         printf("Enter the Employee ID-%d: \n", i+1);
-        // fgets(id, sizeof(id), stdin);
         scanf("%s", &id);
         strcpy(arr[i], id);
     }
     
+    // Displaying all the three Employee eIDs
     for (int j = 0; j < 3; j++)
     {
         printf("Employee Id of Employee %d: %s\n", j+1, arr[j]);
